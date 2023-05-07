@@ -28,48 +28,54 @@ const handleJWTError = () =>
 const handleJWTExpiredError = () =>
   createAppError('Expired token. Please log in again.', 401);
 
-const sendError = (req, res, statusCode, data) => {
+const sendErrorDev = (err, req, res) => {
   if (req.originalUrl.startsWith('/api')) {
-    res.status(statusCode).json(data);
-  } else {
-    res.status(statusCode).render('error', {
-      title: 'Something went wrong!',
-      msg: data.message,
+    return res.status(err.statusCode).json({
+      status: err.status,
+      error: err,
+      message: err.message,
+      stack: err.stack,
     });
   }
-};
 
-const sendErrorDev = (req, res, err) => {
-  sendError(req, res, err.statusCode, {
-    status: err.status,
-    error: err,
-    message: err.message,
-    stack: err.stack,
+  return res.status(err.statusCode).render('error', {
+    title: 'Something went wrong!',
+    msg: err.message,
   });
 };
 
-const sendErrorProd = (req, res, err) => {
-  if (err.isOperational) {
-    sendError(req, res, err.statusCode, {
-      status: err.status,
-      message: err.message,
-    });
-  } else {
-    sendError(req, res, 500, {
+const sendErrorProd = (err, req, res) => {
+  if (req.originalUrl.startsWith('/api')) {
+    if (err.isOperational) {
+      return res.status(err.statusCode).json({
+        status: err.status,
+        message: err.message,
+      });
+    }
+    return res.status(500).json({
       status: 'error',
       message: 'Something went very wrong!',
     });
   }
+
+  if (err.isOperational) {
+    return res.status(err.statusCode).render('error', {
+      title: 'Something went wrong!',
+      msg: err.message,
+    });
+  }
+  return res.status(err.statusCode).render('error', {
+    title: 'Something went wrong!',
+    msg: err.message,
+  });
 };
 
-const handleErrors = (err, req, res, next) => {
-  err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
-
-  let error = { ...err }; // create a copy of the error object
+const handleErrors = (error, req, res, next) => {
+  error.statusCode = error.statusCode || 500;
+  error.status = error.status || 'error';
 
   if (process.env.NODE_ENV === 'development') {
-    sendErrorDev(req, res, error);
+    sendErrorDev(error, req, res);
   } else if (process.env.NODE_ENV === 'production') {
     if (error.name === 'CastError') error = handleCastErrorDB(error);
     else if (error.code === 11000) error = handleDuplicateFieldsDB(error);
@@ -79,7 +85,7 @@ const handleErrors = (err, req, res, next) => {
     else if (error.name === 'TokenExpiredError')
       error = handleJWTExpiredError();
 
-    sendErrorProd(req, res, error);
+    sendErrorProd(error, req, res);
   }
 };
 
