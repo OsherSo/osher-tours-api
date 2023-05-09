@@ -607,7 +607,7 @@ if (userPasswordForm) userPasswordForm.addEventListener("submit", async (e)=>{
     }, "password");
 });
 
-},{"./leaflet":"xvuTT","./login":"7yHem","./updateSettings":"l3cGY","./signup":"fNY2o"}],"xvuTT":[function(require,module,exports) {
+},{"./leaflet":"xvuTT","./login":"7yHem","./signup":"fNY2o","./updateSettings":"l3cGY"}],"xvuTT":[function(require,module,exports) {
 /* eslint-disable */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "displayMap", ()=>displayMap);
@@ -1670,7 +1670,7 @@ var _axiosErrorJsDefault = parcelHelpers.interopDefault(_axiosErrorJs);
 // temporary hotfix to avoid circular references until AxiosURLSearchParams is refactored
 var _formDataJs = require("../platform/node/classes/FormData.js");
 var _formDataJsDefault = parcelHelpers.interopDefault(_formDataJs);
-var Buffer = require("217fdeae5835146f").Buffer;
+var Buffer = require("cdf5118ae0dcd8d8").Buffer;
 "use strict";
 /**
  * Determines if the given thing is a array or js object.
@@ -1825,15 +1825,15 @@ const predicates = (0, _utilsJsDefault.default).toFlatObject((0, _utilsJsDefault
 }
 exports.default = toFormData;
 
-},{"217fdeae5835146f":"fCgem","../utils.js":"5By4s","../core/AxiosError.js":"3u8Tl","../platform/node/classes/FormData.js":"aFlee","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fCgem":[function(require,module,exports) {
+},{"cdf5118ae0dcd8d8":"fCgem","../utils.js":"5By4s","../core/AxiosError.js":"3u8Tl","../platform/node/classes/FormData.js":"aFlee","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fCgem":[function(require,module,exports) {
 /*!
  * The buffer module from node.js, for the browser.
  *
  * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */ /* eslint-disable no-proto */ "use strict";
-var base64 = require("23454f5d29905573");
-var ieee754 = require("b3e0810633b3ab29");
+var base64 = require("7873463177eed4d5");
+var ieee754 = require("59202ceee6561d5e");
 var customInspectSymbol = typeof Symbol === "function" && typeof Symbol["for"] === "function" // eslint-disable-line dot-notation
  ? Symbol["for"]("nodejs.util.inspect.custom") // eslint-disable-line dot-notation
  : null;
@@ -3055,7 +3055,7 @@ var hexSliceLookupTable = function() {
     return table;
 }();
 
-},{"23454f5d29905573":"eIiSV","b3e0810633b3ab29":"cO95r"}],"eIiSV":[function(require,module,exports) {
+},{"7873463177eed4d5":"eIiSV","59202ceee6561d5e":"cO95r"}],"eIiSV":[function(require,module,exports) {
 "use strict";
 exports.byteLength = byteLength;
 exports.toByteArray = toByteArray;
@@ -4864,33 +4864,7 @@ const showAlert = (type, msg)=>{
     window.setTimeout(hideAlert, 3000);
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l3cGY":[function(require,module,exports) {
-/* eslint-disable */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "updateSettings", ()=>updateSettings);
-var _axios = require("axios");
-var _axiosDefault = parcelHelpers.interopDefault(_axios);
-var _alerts = require("./alerts");
-const updateSettings = async (data, type)=>{
-    try {
-        const url = type === "password" ? "/api/v1/users/updatePassword" : "/api/v1/users/updateMe";
-        const res = await (0, _axiosDefault.default)({
-            method: "PATCH",
-            url,
-            data
-        });
-        if (res.data.status === "success") {
-            (0, _alerts.showAlert)("success", "Setting updated successfully!");
-            window.setTimeout(()=>{
-                location.assign("/me");
-            }, 1500);
-        }
-    } catch (err) {
-        (0, _alerts.showAlert)("error", err.response.data.message);
-    }
-};
-
-},{"axios":"jo6P5","./alerts":"6Mcnf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fNY2o":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fNY2o":[function(require,module,exports) {
 /* eslint-disable */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "signup", ()=>signup);
@@ -4917,6 +4891,32 @@ const signup = async (name, email, password, passwordConfirm)=>{
         }
     } catch (err) {
         (0, _alerts.showAlert)("error", "Passwords are not the same!");
+    }
+};
+
+},{"axios":"jo6P5","./alerts":"6Mcnf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l3cGY":[function(require,module,exports) {
+/* eslint-disable */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "updateSettings", ()=>updateSettings);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _alerts = require("./alerts");
+const updateSettings = async (data, type)=>{
+    try {
+        const url = type === "password" ? "/api/v1/users/updatePassword" : "/api/v1/users/updateMe";
+        const res = await (0, _axiosDefault.default)({
+            method: "PATCH",
+            url,
+            data
+        });
+        if (res.data.status === "success") {
+            (0, _alerts.showAlert)("success", "Setting updated successfully!");
+            window.setTimeout(()=>{
+                location.assign("/me");
+            }, 1500);
+        }
+    } catch (err) {
+        (0, _alerts.showAlert)("error", err.response.data.message);
     }
 };
 

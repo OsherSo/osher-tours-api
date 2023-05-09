@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 const rateLimit = require('express-rate-limit');
-// const helmet = require('helmet');
 const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
@@ -24,8 +23,6 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use(helmet());
 
 const limiter = rateLimit({
   max: 500,
