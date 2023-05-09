@@ -7,7 +7,10 @@ exports.getAll = (Model) =>
     let filter = {};
     if (req.params.tourId) filter = { tour: req.params.tourId };
 
-    const features = new APIFeatures(Model.find(filter), req.query)
+    const features = new APIFeatures(
+      Model.find(filter).populate('reviews'),
+      req.query
+    )
       .filter()
       .sort()
       .limitFields()
