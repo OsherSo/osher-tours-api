@@ -13,14 +13,12 @@ exports.getAll = (Model) =>
       .limitFields()
       .paginate();
 
-    const docs = await features.query;
+    const data = await features.query;
 
     res.status(200).json({
       status: 'success',
-      results: docs.length,
-      data: {
-        docs,
-      },
+      results: data.length,
+      data,
     });
   });
 
