@@ -17,10 +17,10 @@ const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
 
-app.use(cors());
-
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -32,6 +32,7 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 app.use(express.json({ limit: '10kb' }));
+
 app.use(cookieParser());
 
 app.use(mongoSanitize());
@@ -56,12 +57,12 @@ app.use(compression());
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
-app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/reviews', reviewRouter);.
+
+app.use(handleErrors);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
-
-app.use(handleErrors);
 
 module.exports = app;
