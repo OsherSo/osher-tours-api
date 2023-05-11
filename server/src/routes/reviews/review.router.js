@@ -1,7 +1,7 @@
 // Import required modules
 const express = require('express');
 const authController = require('../../controllers/authController');
-const reviewController = require('./reviewController');
+const reviewController = require('./review.controller');
 
 // Create a new router instance
 const router = express.Router({ mergeParams: true });
