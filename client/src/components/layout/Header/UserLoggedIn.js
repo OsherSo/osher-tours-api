@@ -5,7 +5,6 @@ const UserLoggedIn = () => {
 
   const auth = useAuthUser();
   const user = auth();
-  console.log(user);
 
   return (
     <nav className="nav nav--user">

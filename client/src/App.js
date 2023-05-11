@@ -4,7 +4,7 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
-import { AuthProvider, RequireAuth } from "react-auth-kit";
+import { AuthProvider } from "react-auth-kit";
 
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer";
@@ -13,6 +13,7 @@ import SignupPage from "./components/authentication/SignupPage";
 import Overview from "./components/Overview";
 import TourPage from "./components/TourPage/TourPage";
 import NotFound from "./components/authentication/NotFound";
+import AccountSettings from "./components/AccountSettings/AccountSettings";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -21,6 +22,7 @@ const App = () => {
         <Route index element={<Overview />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<SignupPage />} />
+        <Route path="me" element={<AccountSettings />} />
 
         <Route path="tour">
           <Route path=":slug" element={<TourPage />} />
