@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+
 import TourCard from "./TourCard/TourCard";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Overview = () => {
   const [tours, setTours] = useState([]);
@@ -21,9 +23,11 @@ const Overview = () => {
   return (
     <main className="main">
       <div className="card-container">
-        {tours.map((tour) => (
-          <TourCard key={tour.id} tour={tour} />
-        ))}
+        {tours.length === 0 ? (
+          <MoonLoader size={150} />
+        ) : (
+          tours.map((tour) => <TourCard key={tour.id} tour={tour} />)
+        )}
       </div>
     </main>
   );

@@ -4,7 +4,7 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
-import { AuthProvider } from "react-auth-kit";
+import { AuthProvider, RequireAuth } from "react-auth-kit";
 
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer";
@@ -22,7 +22,14 @@ const App = () => {
         <Route index element={<Overview />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<SignupPage />} />
-        <Route path="me" element={<AccountSettings />} />
+        <Route
+          path="me"
+          element={
+            <RequireAuth loginPath={"/login"}>
+              <AccountSettings />
+            </RequireAuth>
+          }
+        />
 
         <Route path="tour">
           <Route path=":slug" element={<TourPage />} />
