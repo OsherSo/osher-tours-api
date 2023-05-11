@@ -1,8 +1,8 @@
 // Import the required modules
 const express = require('express');
-const tourController = require('./tourController');
+const tourController = require('./tour.controller');
 const authController = require('../../controllers/authController');
-const reviewRouter = require('./reviewRoutes');
+const reviewRouter = require('../reviews/review.router');
 
 // Initialize the router
 const router = express.Router();

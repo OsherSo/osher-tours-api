@@ -10,9 +10,9 @@ const cors = require('cors');
 // const compression = require('compression');
 
 // const handleErrors = require('./controllers/errorController');
-const tourRouter = require('./routes/tourRoutes');
-const userRouter = require('./routes/userRoutes');
-const reviewRouter = require('./routes/reviewRoutes');
+const tourRouter = require('./routes/tours/tour.router');
+const userRouter = require('./routes/users/user.router');
+const reviewRouter = require('./routes/reviews/review.router');
 
 const app = express();
 

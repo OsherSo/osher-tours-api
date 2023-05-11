@@ -1,4 +1,4 @@
-const Tour = require('../models/tourModel');
+const Tour = require('../../models/tour.model');
 const factory = require('../../controllers/handlerFactory');
 const catchAsync = require('../../utils/catchAsync');
 

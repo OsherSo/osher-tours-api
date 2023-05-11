@@ -1,6 +1,6 @@
 // Require dependencies
 const mongoose = require('mongoose');
-const Tour = require('./tourModel');
+const Tour = require('./tour.model');
 
 // Create review schema
 const reviewSchema = new mongoose.Schema(
