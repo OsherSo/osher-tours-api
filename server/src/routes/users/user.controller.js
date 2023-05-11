@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
-const catchAsync = require('../utils/catchAsync');
-const factory = require('./handlerFactory');
+const catchAsync = require('../../utils/catchAsync');
+const factory = require('../../controllers/handlerFactory');
 
 // CRUD operations for users
 exports.getAllUsers = factory.getAll(User);

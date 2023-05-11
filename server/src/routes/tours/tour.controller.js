@@ -1,6 +1,6 @@
 const Tour = require('../models/tourModel');
-const factory = require('./handlerFactory');
-const catchAsync = require('../utils/catchAsync');
+const factory = require('../../controllers/handlerFactory');
+const catchAsync = require('../../utils/catchAsync');
 
 // CRUD operations for tours
 exports.getAllTours = factory.getAll(Tour);
