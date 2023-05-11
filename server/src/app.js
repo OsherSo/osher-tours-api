@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 
 // const rateLimit = require('express-rate-limit');
 // const mongoSanitize = require('express-mongo-sanitize');
@@ -16,14 +17,8 @@ const reviewRouter = require('./routes/reviews/review.router');
 
 const app = express();
 
-// app.set('view engine', 'pug');
-// app.set('views', path.join(__dirname, 'views'));
-
+app.use(helmet());
 app.use(cors());
-
-app.use(express.json({ limit: '10kb' }));
-
-app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // const limiter = rateLimit({
 //   max: 500,
@@ -52,6 +47,9 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 // );
 
 // app.use(compression());
+
+app.use(express.json({ limit: '10kb' }));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
