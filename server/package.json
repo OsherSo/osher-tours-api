@@ -5,10 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "jest",
-    "start": "node ./src/server.js",
-    "watch": "nodemon ./src/server.js",
-    "build": "parcel build ./public/js/index.js --dist-dir ./public/js/bundled",
-    "watch:js": "parcel serve ./public/js/index.js --dist-dir ./public/js/bundled"
+    "test-watch": "jest --watch",
+    "watch": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "author": "Osher Solimany",
   "license": "ISC",
