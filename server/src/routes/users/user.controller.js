@@ -2,13 +2,11 @@ const User = require('../../models/user.model');
 const catchAsync = require('../../utils/catchAsync');
 const factory = require('../../controllers/handlerFactory');
 
-// CRUD operations for users
 exports.getAllUsers = factory.getAll(User);
 exports.getUser = factory.getOne(User);
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
 
-// Operations on the current authenticated user
 exports.getMe = (req, res, next) => {
   req.params.id = req.user._id;
   next();

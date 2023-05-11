@@ -1,15 +1,12 @@
-// Import required modules
 const express = require('express');
-const authController = require('../../controllers/authController');
-const reviewController = require('./review.controller');
 
-// Create a new router instance
+const reviewController = require('./review.controller');
+const authController = require('../../controllers/authController');
+
 const router = express.Router({ mergeParams: true });
 
-// Middleware to protect routes from unauthorized access
 router.use(authController.protect);
 
-// Set up routes for the reviews resource
 router
   .route('/')
   .get(reviewController.getAllReviews)
@@ -19,7 +16,6 @@ router
     reviewController.createReview
   );
 
-// Set up routes for individual review resources
 router
   .route('/:id')
   .get(reviewController.getReview)
@@ -32,5 +28,4 @@ router
     reviewController.deleteReview
   );
 
-// Export the router for use in other modules
 module.exports = router;

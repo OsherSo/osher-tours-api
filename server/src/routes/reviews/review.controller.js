@@ -1,8 +1,6 @@
-// Import dependencies
 const Review = require('../../models/review.model');
 const factory = require('../../controllers/handlerFactory');
 
-// Define functions to handle HTTP requests
 exports.getAllReviews = factory.getAll(Review);
 exports.getReview = factory.getOne(Review);
 exports.createReview = factory.createOne(Review);

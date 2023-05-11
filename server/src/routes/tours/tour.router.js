@@ -1,13 +1,11 @@
-// Import the required modules
 const express = require('express');
-const tourController = require('./tour.controller');
-const authController = require('../../controllers/authController');
-const reviewRouter = require('../reviews/review.router');
 
-// Initialize the router
+const tourController = require('./tour.controller');
+const reviewRouter = require('../reviews/review.router');
+const authController = require('../../controllers/authController');
+
 const router = express.Router();
 
-// Define routes
 router.use('/:tourId/reviews', reviewRouter);
 
 router
@@ -39,5 +37,4 @@ router
     tourController.deleteTour
   );
 
-// Export the router
 module.exports = router;

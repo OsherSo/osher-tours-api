@@ -1,8 +1,7 @@
 const Tour = require('../../models/tour.model');
-const factory = require('../../controllers/handlerFactory');
 const catchAsync = require('../../utils/catchAsync');
+const factory = require('../../controllers/handlerFactory');
 
-// CRUD operations for tours
 exports.getAllTours = factory.getAll(Tour);
 exports.getTour = factory.getOne(Tour, { path: 'reviews' });
 exports.createTour = factory.createOne(Tour);
